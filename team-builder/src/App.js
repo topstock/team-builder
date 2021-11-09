@@ -5,50 +5,37 @@ import Member from './components/Member';
 import MemberForm from './components/MemberForm';
 
 const initialFormValues = {
-  username: '',
+  memberName: '',
   email: '',
   role: ''
 }
 
-const initialMembers = [
-  {
-    username: 'PhilG',
-    email: 'philG@philGLambda.net',
-    role: 'student'
-  },
-  {
-    username: 'BabsD',
-    email: 'babsD@philGLambda.net',
-    role: 'coach'
-  },
-  {
-    username: 'RileyC',
-    email: 'rileyC@philGLambda.net',
-    role: 'instructor'
-  }
-]
-
 const App = () => {
-  const [members, setMembers] = useState(initialMembers);
+  const [members, setMembers] = useState( [{
+    memberName: 'RileyC',
+    email: 'rileyC@philGLambda.net',
+    role: 'Counsellor'
+  }]);
+
   // state  holds all values of the form
-  const [formValues, setFormValues] = useState(initialFormValues);
-  const[formErrors, setFormErrors] = useState("");
+  const [formValues, setFormValues] = useState({ memberName: '', email: '', role: ''});
 
-  const updateForm = (inputName, inputValue) => {
-    //step 8
-  }
-
-  const submitForm = () => {
-    //step 9
-    const newMember= {
-      username: formValues.username,
+  const onSubmit = () => {
+    const newMember = {
+      memberName: formValues.memberName,
       email: formValues.email,
       role: formValues.role
     }
     setMembers(members.concat(newMember));
-    setFormValues({username: '', email: '', role: ''});
+    setFormValues({memberName: '', email: '', role: ''});
+
   }
-  
+
+  const onChange = (name, value) => { //update form
+    setFormValues({ ...formValues, [name]: value})
+  }
+
+
   return (
     <div className="App">
       <header className="App-header">
@@ -59,8 +46,8 @@ const App = () => {
       <div className="newMember">
        <MemberForm
         values={formValues}
-        update={updateForm}
-        submit={submitForm}
+        onChange={onChange}
+        onSubmit={onSubmit}
       />
 
        {
