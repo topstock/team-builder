@@ -15,3 +15,5 @@ const Member = (props) => {
       </div>
     )
 }
+
+export default Member

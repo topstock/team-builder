@@ -1,8 +1,8 @@
-import logo from '../logo.svg';
+import logo from './logo.svg';
 import './App.css';
 import React, { useEffect, useState } from 'react';
-import Member from './Member';
-import MemberForm from './MemberForm';
+import Member from './components/Member';
+import MemberForm from './components/MemberForm';
 
 const initialFormValues = {
   username: '',
@@ -26,10 +26,10 @@ const initialMembers = [
     email: 'rileyC@philGLambda.net',
     role: 'instructor'
   }
-];
+]
 
 const App = () => {
-  const [initialMembers, setMembers] = useState([]);
+  const [members, setMembers] = useState(initialMembers);
   // state  holds all values of the form
   const [formValues, setFormValues] = useState(initialFormValues);
   const[formErrors, setFormErrors] = useState("");
@@ -40,18 +40,15 @@ const App = () => {
 
   const submitForm = () => {
     //step 9
+    const newMember= {
+      username: formValues.username,
+      email: formValues.email,
+      role: formValues.role
+    }
+    setMembers(members.concat(newMember));
+    setFormValues({username: '', email: '', role: ''});
   }
-  const newMember={
-    username: formValues.username,
-    email: formValues.email,
-    role: formValues.role
-  }
-  // useEffect(() => {
-  //   setMembers(members.concat(newMember));
-  //   setFormValues({username: '', email: '', role: ''});
-  // }
-  // ,[])
-
+  
   return (
     <div className="App">
       <header className="App-header">
@@ -60,19 +57,19 @@ const App = () => {
         
       </header>
       <div className="newMember">
-      {/* <MemberForm
+       <MemberForm
         values={formValues}
         update={updateForm}
         submit={submitForm}
-      /> */}
+      />
 
-      {
+       {
         members.map(member => {
           return (
             <Member key={member.id} details={member} />
           )
         })
-      }
+      } 
       </div>
     </div>
   );
