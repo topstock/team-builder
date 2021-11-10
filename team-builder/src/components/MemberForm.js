@@ -16,7 +16,7 @@ const MemberForm = (props) => {
 
   return (
     <form className='form container' onSubmit={handleSubmit}>
-      <div className ='form-group inputs'>
+      <div className ='form-group inputs member'>
         <label>Member Name
           <input 
             type="text"
@@ -33,13 +33,15 @@ const MemberForm = (props) => {
             value={props.values.email}
             onChange={handleChange}
           />
-        </label>Role
+        </label>
+        <label>Role
           <select value={props.values.role} name="role" onChange={handleChange}>
             <option value="">-- Select a Role --</option>
             <option value="Paraeducator">Paraeducator</option>
             <option value="Teacher">Teacher</option>
             <option value="Counsellor">Counsellor</option>
           </select>
+        </label>
         <div className='submit'>
           <button disabled={!values.memberName || !values.email || !values.role}>Add Team Member</button>
         </div>

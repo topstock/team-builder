@@ -9,7 +9,7 @@ const Member = (props) => {
 
     return (
       <div className='member'>
-        <h2>{details.username}</h2>
+        <h3>{details.memberName}</h3>
         <p>Email: {details.email}</p>
         <p>Role: {details.role}</p>
       </div>

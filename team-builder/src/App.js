@@ -28,7 +28,6 @@ const App = () => {
     }
     setMembers(members.concat(newMember));
     setFormValues({memberName: '', email: '', role: ''});
-
   }
 
   const onChange = (name, value) => { //update form
@@ -40,23 +39,26 @@ const App = () => {
     <div className="App">
       <header className="App-header">
         <h1>Team Management</h1>
-        <p>Assign Team Members</p>
-        
       </header>
-      <div className="newMember">
-       <MemberForm
-        values={formValues}
-        onChange={onChange}
-        onSubmit={onSubmit}
-      />
-
-       {
-        members.map(member => {
-          return (
-            <Member key={member.id} details={member} />
-          )
-        })
-      } 
+      <div className="newMember indent">
+        <h2>Assign Team Members</h2>
+        <MemberForm
+          values={formValues}
+          onChange={onChange}
+          onSubmit={onSubmit}
+        />
+      </div>
+      <div className="indent bottomSection">
+        <h2>Your Team</h2>
+        <div className="yourTeam">
+        {
+          members.map(member => {
+            return (
+              <Member key={member.email} details={member} />
+            )
+          })
+        } 
+        </div>
       </div>
     </div>
   );
